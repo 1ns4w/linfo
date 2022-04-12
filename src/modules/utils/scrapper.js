@@ -6,9 +6,11 @@ import scrapDetails from './scrapDetails.js'
 
 const scrapProfile = async (page, profileLink) => {
 
+    console.log("contact")
+
     const contactInformationLink = `${profileLink}/overlay/contact-info`
     await page.goto(contactInformationLink, { waitUntil: 'domcontentloaded' })
-    await page.waitForXPath('//h1[contains(@id, "pv-contact-info")]', { timeout: 60000 })
+    await page.waitForXPath('//h1[contains(@id, "pv-contact-info")]')
 
     console.log("contact")
 
