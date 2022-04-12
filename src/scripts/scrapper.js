@@ -7,15 +7,18 @@ import { db } from '../modules/services/db.js'
 // show an alert
 const run = async (tabId, keyword) => {
 
-  console.log("haha")
   const page = await initBrowser(tabId)
   const profilesLinks = await findProfiles(page, keyword)
+
+  console.log("Scrapping profiles...")
 
   for (const profileLink of profilesLinks) {
     const scrappedProfile = await scrapProfile(page, profileLink)
     console.log(scrappedProfile)
     await db.person.add(scrappedProfile);
   }
+
+  console.log("Profiles saved!")
 
   await page.close();
 }
