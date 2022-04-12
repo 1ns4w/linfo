@@ -6,15 +6,11 @@ const initBrowser = async (tabId) => {
     const extensionTransport = await ExtensionDebuggerTransport.create(tabId)
     const browser = await puppeteer.connect({ transport: extensionTransport, defaultViewport: null })
     const [page] = await browser.pages()
-    await page.goto('https://www.linkedin.com/', { waitUntil: 'domcontentloaded' })
+    await page.waitForNavigation({ waitUntil: 'domcontentloaded' })
     const title = await page.title()
-    if (title.includes("registro")) {
-        alert("Inicie sesión y vuelva a utilizar la extensión")
-        await page.close()
-    }
-    else {
-        return page
-    }
+    if (title.includes("Feed")) return page
+    alert("Inicie sesión y vuelva a utilizar la extensión")
+    await page.close()
 
 }
 

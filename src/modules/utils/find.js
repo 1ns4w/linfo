@@ -3,7 +3,8 @@ import puppeteer from 'puppeteer-core/lib/cjs/puppeteer/web'
 const findProfiles = async (page, keyword) => {
     
     const searchURL = `https://www.linkedin.com/search/results/people/?keywords=${keyword}`
-    await page.goto(searchURL, { waitUntil: 'domcontentloaded', timeout: 45000 })
+    await page.goto(searchURL, { waitUntil: 'domcontentloaded' })
+    console.log("FIND LOADED")
     await page.waitForXPath('//a[contains(@class, "app-aware-link") and ./span]')
     const profiles = await page.$x('//a[contains(@class, "app-aware-link") and ./span]')
 
