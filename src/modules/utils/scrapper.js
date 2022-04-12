@@ -9,7 +9,7 @@ const scrapProfile = async (page, profileLink) => {
     
 
     const contactInformationLink = `${profileLink}/overlay/contact-info`
-    await page.goto(contactInformationLink, { waitUntil: 'domcontentloaded' })
+    await page.goto(contactInformationLink, { waitUntil: 'domcontentloaded', timeout: 60000 })
     console.log("contact1")
     await page.waitForXPath('//h1[contains(@id, "pv-contact-info")]')
     console.log("contact2")
