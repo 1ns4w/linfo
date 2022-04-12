@@ -4,7 +4,6 @@ import findProfiles from '../modules/utils/find.js'
 import scrapProfile from '../modules/utils/scrapper.js'
 import { db } from '../modules/services/db.js'
 
-// show an alert
 const run = async (tabId, keyword) => {
 
   try {
