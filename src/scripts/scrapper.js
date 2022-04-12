@@ -5,7 +5,7 @@ import scrapProfile from '../modules/utils/scrapper.js'
 import { db } from '../modules/services/db.js'
 
 // show an alert
-const run = async (tabId, keyword) => {
+const run = async (tabId, keyword = "fullstack") => {
 
   console.log("haha")
   const page = await initBrowser(tabId)
