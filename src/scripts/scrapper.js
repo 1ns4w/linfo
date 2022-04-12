@@ -7,20 +7,33 @@ import { db } from '../modules/services/db.js'
 // show an alert
 const run = async (tabId, keyword) => {
 
-  const page = await initBrowser(tabId)
-  const profilesLinks = await findProfiles(page, keyword)
+  try {
 
-  console.log("Scrapping profiles...")
+    const [browser, page] = await initBrowser(tabId)
 
-  for (const profileLink of profilesLinks) {
-    const scrappedProfile = await scrapProfile(page, profileLink)
-    console.log(scrappedProfile)
-    await db.person.add(scrappedProfile);
+    if (!page) {
+      await browser.close()
+      console.log("User not logged in")
+      return
+    }
+
+    const profilesLinks = await findProfiles(page, keyword)
+    console.log("Scrapping profiles...")
+
+    for (const profileLink of profilesLinks) {
+      const scrappedProfile = await scrapProfile(page, profileLink)
+      console.log(scrappedProfile)
+      await db.person.add(scrappedProfile);
+    }
+
+    console.log("Profiles saved!")
+    await browser.close();
+  } 
+  
+  catch (error) {
+    console.log("Scrapping interrupted")
   }
 
-  console.log("Profiles saved!")
-
-  await page.close();
 }
 
 export default run

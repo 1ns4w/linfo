@@ -8,10 +8,8 @@ const initBrowser = async (tabId) => {
     const [page] = await browser.pages()
     await page.waitForNavigation({ waitUntil: 'domcontentloaded' })
     const title = await page.title()
-    if (title.includes("Feed")) return page
-    alert("Inicie sesión y vuelva a utilizar la extensión")
-    await page.close()
-
+    if (title.includes("Feed")) return [browser, page]
+    return [browser, null]
 }
 
 export default initBrowser
