@@ -11,7 +11,6 @@ const findProfiles = async (page, keyword) => {
         const profileLink = await profile.evaluate(node => node.href.split('?')[0])
         profileLinks.push(profileLink)
     }
-    console.log(profileLinks)
     return profileLinks
 }
 
