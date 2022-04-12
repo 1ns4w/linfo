@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "linfo",
+    "version": "1.0.0",
+    "background": {
+        "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Click me"
+    },
+    "permissions": ["tabs", "debugger", "scripting", "activeTab"]
+}
