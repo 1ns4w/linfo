@@ -23,13 +23,13 @@ const scrapProfile = async (page, profileLink) => {
     console.log("1")
 
     const experienceDetailsLink = getDetailsLink(profileLink, 'experience')
-    await page.goto(experienceDetailsLink, { waitUntil: 'load', timeout: 120000})
+    await page.goto(experienceDetailsLink, { waitUntil: 'load', timeout: 90000})
     const experience = await scrapDetails(page, 'experience')
 
     console.log("2")
 
     const educationDetailsLink = getDetailsLink(profileLink, 'education')
-    await page.goto(educationDetailsLink, { waitUntil: 'load', timeout: 120000})
+    await page.goto(educationDetailsLink, { waitUntil: 'load', timeout: 90000})
     const education = await scrapDetails(page, 'education')
 
     console.log("3")
