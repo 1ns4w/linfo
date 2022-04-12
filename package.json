@@ -1,0 +1,16 @@
+{
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "esmify": "^2.1.1"
+  },
+  "dependencies": {
+    "dexie": "^3.2.1",
+    "puppeteer-core": "^13.5.2",
+    "puppeteer-extension-transport": "^0.0.6"
+  },
+  "scripts": {
+    "build": "browserify src/background.js -p esmify > dist/background.js && browserify src/script.js -p esmify > dist/script.js && cp src/index.html dist/index.html"
+  }
+}
